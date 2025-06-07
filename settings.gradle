@@ -1,0 +1,34 @@
+pluginManagement {
+    repositories {
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        maven {
+            name = 'Architectury'
+            url = 'https://maven.architectury.dev/'
+        }
+        maven {
+            name = 'Forge'
+            url = 'https://maven.minecraftforge.net/'
+        }
+        maven {
+            name = 'Jitpack'
+            url = 'https://jitpack.io/'
+        }
+        gradlePluginPortal()
+    }
+    
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'fabric-loom') {
+                useModule "net.fabricmc:fabric-loom:${requested.version}"
+            }
+        }
+    }
+}
+
+rootProject.name = 'wayacreate-says'
+
+include 'src:main'
+include 'src:test'

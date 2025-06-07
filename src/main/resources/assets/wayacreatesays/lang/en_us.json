@@ -1,0 +1,12 @@
+{
+  "key.wayacreatesays.listen": "Listen for Voice Commands",
+  "category.wayacreatesays.main": "WayaCreate Says",
+  "gameMode.wayacreate": "WayaCreate Mode",
+  "gameMode.wayacreate.info": "Play with voice commands and enhanced abilities!",
+  "gameMode.wayacreate.help": "Use voice commands to control the game. Say 'WayaCreate says help' for a list of commands.",
+  "gameMode.wayacreate.cheats": "Cheats are enabled in WayaCreate Mode",
+  "gameMode.wayacreate.cheats.info": "You can use voice commands to get items, change time, and more!",
+  "gameMode.wayacreate.welcome": "§6§lWelcome to WayaCreate Mode!§r\n§7Use voice commands to control the game. Say 'WayaCreate says help' for a list of commands.",
+  "gameMode.wayacreate.abilities": "§aEnhanced abilities activated! You now have increased health, speed, and flight.",
+  "gameMode.wayacreate.voice_ready": "§aVoice commands are ready! Say 'WayaCreate says help' to begin."
+}

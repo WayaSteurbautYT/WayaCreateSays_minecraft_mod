@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.wayacreate.wayacreatesays.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "GameModeSelectionScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

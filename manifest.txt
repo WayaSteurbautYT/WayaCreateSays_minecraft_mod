@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: WayaCreate Says
+Implementation-Version: 1.0.0
+Main-Class: com.wayacreate.wayacreatesays.WayaCreateSaysMod
+ECHO is off.

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "wayacreatesays",
+  "version": "${version}",
+  "name": "WayaCreate Says",
+  "description": "Control Minecraft with your voice! Say 'Simon says' or 'WayaCreate says' followed by a command.",
+  "authors": [
+    "WayaCreate"
+  ],
+  "contact": {
+    "homepage": "https://www.youtube.com/c/WayaCreate",
+    "sources": "https://github.com/WayaCreate/wayacreate-says-mod",
+    "issues": "https://github.com/WayaCreate/wayacreate-says-mod/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/wayacreatesays/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.wayacreate.wayacreatesays.WayaCreateSaysMod"
+    ],
+    "client": [
+      "com.wayacreate.wayacreatesays.WayaCreateSaysModClient"
+    ],
+    "modmenu": [
+      "com.wayacreate.wayacreatesays.config.WayaCreateSaysModMenu"
+    ]
+  },
+  "mixins": [
+    "wayacreatesays.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": ">=${fabric_api_version}",
+    "minecraft": "~1.20.1",
+    "java": ">=17"
+  },
+  "suggests": {
+    "modmenu": ">=4.0.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/yourdiscord"
+      }
+    }
+  }
+}

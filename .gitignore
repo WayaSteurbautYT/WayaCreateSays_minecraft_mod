@@ -1,0 +1,32 @@
+# Gradle files
+.gradle/
+build/
+
+# IDE specific files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Environment files
+.env
+
+# Logs
+logs/
+*.log
+
+# Local configuration files
+gradle.properties
+
+# Minecraft
+run/
+
+# Build outputs
+build/
+classes/
+libs/
+*.jar
+
+# OS specific
+.DS_Store
+Thumbs.db
