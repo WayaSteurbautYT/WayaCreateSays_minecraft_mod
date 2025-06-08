@@ -1,0 +1,11 @@
+{
+  "display": {
+    "title": "Into the Fire",
+    "description": "You've collected 5 Blaze Rods.",
+    "icon": { "item": "minecraft:blaze_rod" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/find_nether_fortress"
+  },
+  "criteria": { "has_blaze_rods": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["minecraft:blaze_rod"], "count": { "min": 5 } }] }}},
+  "rewards": { "function": "wcs:advancements/story/reward_get_blaze_rods" }
+}

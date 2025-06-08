@@ -1,0 +1,23 @@
+{
+  "display": {
+    "title": "Let There Be Light!",
+    "description": "You've crafted torches to light your way.",
+    "icon": {
+      "item": "minecraft:torch"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "after": "wcs:story/craft_stone_pickaxe"
+  },
+  "criteria": {
+    "has_torches": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["minecraft:torch"]}]}
+    }
+  },
+  "rewards": {
+    "function": "wcs:advancements/story/reward_craft_torches"
+  }
+}

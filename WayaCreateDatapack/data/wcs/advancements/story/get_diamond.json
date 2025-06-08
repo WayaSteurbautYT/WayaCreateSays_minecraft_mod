@@ -1,0 +1,11 @@
+{
+  "display": {
+    "title": "Diamonds!",
+    "description": "You've found your first precious Diamond!",
+    "icon": { "item": "minecraft:diamond" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/craft_full_iron_gear"
+  },
+  "criteria": { "has_diamond": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["minecraft:diamond"] }] }}},
+  "rewards": { "function": "wcs:advancements/story/reward_get_diamond" }
+}

@@ -1,0 +1,6 @@
+{
+  "values": [
+    "wcs:item_abilities/check_item_usage",
+    "wcs:chat_commands/process_triggers"
+  ]
+}

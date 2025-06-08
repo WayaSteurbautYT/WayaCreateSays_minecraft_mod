@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": "Home Sweet Hovel!",
+    "description": "You've built a basic shelter by placing a door.",
+    "icon": {
+      "item": "minecraft:oak_door"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "after": "wcs:story/craft_torches"
+  },
+  "criteria": {
+    "placed_door": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "item": {
+          "tag": "minecraft:doors"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "wcs:advancements/story/reward_build_shelter"
+  }
+}

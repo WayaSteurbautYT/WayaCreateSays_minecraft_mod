@@ -1,0 +1,11 @@
+{
+  "display": {
+    "title": "Obsidian Collector",
+    "description": "You've gathered enough Obsidian for a Nether Portal.",
+    "icon": { "item": "minecraft:obsidian" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/craft_diamond_pickaxe"
+  },
+  "criteria": { "has_obsidian": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["minecraft:obsidian"], "count": { "min": 10 } }] }}},
+  "rewards": { "function": "wcs:advancements/story/reward_mine_obsidian" }
+}

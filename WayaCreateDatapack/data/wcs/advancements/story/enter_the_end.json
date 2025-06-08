@@ -1,0 +1,9 @@
+{
+  "display": {
+    "title": "The End...?", "description": "You have arrived in the End dimension.",
+    "icon": { "item": "minecraft:end_stone" }, "frame": "goal", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/prepare_to_enter_end"
+  },
+  "criteria": { "entered_end": { "trigger": "minecraft:changed_dimension", "conditions": { "to": "minecraft:the_end" }}},
+  "rewards": { "function": "wcs:advancements/story/reward_enter_the_end" }
+}

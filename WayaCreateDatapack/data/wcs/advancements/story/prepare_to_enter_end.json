@@ -1,0 +1,9 @@
+{
+  "display": {
+    "title": "Portal Primed!", "description": "You've used an Eye of Ender, likely at the End Portal.",
+    "icon": { "item": "minecraft:end_portal_frame" }, "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/locate_stronghold"
+  },
+  "criteria": { "used_eye": { "trigger": "minecraft:used_item", "conditions": { "item": { "items": ["minecraft:ender_eye"] }}}},
+  "rewards": { "function": "wcs:advancements/story/reward_prepare_to_enter_end" }
+}

@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": "Stone Age!",
+    "description": "You've crafted your first Stone Pickaxe.",
+    "icon": {
+      "item": "minecraft:stone_pickaxe"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "after": "wcs:story/craft_wooden_tools"
+  },
+  "criteria": {
+    "has_stone_pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:stone_pickaxe"]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "function": "wcs:advancements/story/reward_craft_stone_pickaxe"
+  }
+}

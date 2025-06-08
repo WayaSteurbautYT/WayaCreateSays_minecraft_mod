@@ -1,0 +1,26 @@
+{
+  "display": {
+    "title": "Fully Kitted!",
+    "description": "You've crafted a full set of iron armor and main iron tools.",
+    "icon": {
+      "item": "minecraft:iron_chestplate"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "after": "wcs:story/get_iron_ingot"
+  },
+  "criteria": {
+    "has_iron_helmet": {"trigger": "minecraft:inventory_changed","conditions": {"items": [{"items": ["minecraft:iron_helmet"]}]}},
+    "has_iron_chestplate": {"trigger": "minecraft:inventory_changed","conditions": {"items": [{"items": ["minecraft:iron_chestplate"]}]}},
+    "has_iron_leggings": {"trigger": "minecraft:inventory_changed","conditions": {"items": [{"items": ["minecraft:iron_leggings"]}]}},
+    "has_iron_boots": {"trigger": "minecraft:inventory_changed","conditions": {"items": [{"items": ["minecraft:iron_boots"]}]}},
+    "has_iron_pickaxe": {"trigger": "minecraft:inventory_changed","conditions": {"items": [{"items": ["minecraft:iron_pickaxe"]}]}},
+    "has_iron_axe": {"trigger": "minecraft:inventory_changed","conditions": {"items": [{"items": ["minecraft:iron_axe"]}]}},
+    "has_iron_sword": {"trigger": "minecraft:inventory_changed","conditions": {"items": [{"items": ["minecraft:iron_sword"]}]}}
+  },
+  "rewards": {
+    "function": "wcs:advancements/story/reward_craft_full_iron_gear"
+  }
+}

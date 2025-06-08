@@ -1,0 +1,9 @@
+{
+  "display": {
+    "title": "At the Threshold", "description": "You've located a Stronghold.",
+    "icon": { "item": "minecraft:stone_bricks" }, "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/craft_eyes_of_ender"
+  },
+  "criteria": { "in_stronghold": { "trigger": "minecraft:location", "conditions": { "feature": "minecraft:stronghold" }}},
+  "rewards": { "function": "wcs:advancements/story/reward_locate_stronghold" }
+}

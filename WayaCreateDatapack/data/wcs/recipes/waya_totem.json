@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:gold_block" },
+    { "item": "minecraft:diamond" },
+    { "item": "minecraft:emerald" },
+    { "item": "minecraft:totem_of_undying" }
+  ],
+  "result": {
+    "item": "minecraft:carrot_on_a_stick",
+    "count": 1,
+    "nbt": "{display:{Name:'{\"text\":\"Totem of Waya\",\"color\":\"gold\",\"italic\":false}',Lore:['{\"text\":\"Right-click to activate WayaCreate Mode!\",\"color\":\"red\"}','{\"text\":\"(Consumable)\"}' ]},wcs_item:\"waya_totem\",CustomModelData:5}"
+  }
+}

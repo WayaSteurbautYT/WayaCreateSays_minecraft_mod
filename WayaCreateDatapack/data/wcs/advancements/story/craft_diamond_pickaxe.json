@@ -1,0 +1,11 @@
+{
+  "display": {
+    "title": "Diamond Tipped",
+    "description": "You've crafted a Diamond Pickaxe, ready for tough materials.",
+    "icon": { "item": "minecraft:diamond_pickaxe" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/get_diamond"
+  },
+  "criteria": { "has_diamond_pickaxe": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["minecraft:diamond_pickaxe"] }] }}},
+  "rewards": { "function": "wcs:advancements/story/reward_craft_diamond_pickaxe" }
+}

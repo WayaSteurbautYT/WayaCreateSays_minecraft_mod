@@ -1,0 +1,11 @@
+{
+  "display": {
+    "title": "We Need to Go Deeper",
+    "description": "You've entered the fiery dimension of the Nether.",
+    "icon": { "item": "minecraft:flint_and_steel" },
+    "frame": "goal", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/mine_obsidian"
+  },
+  "criteria": { "entered_nether": { "trigger": "minecraft:changed_dimension", "conditions": { "to": "minecraft:the_nether" }}},
+  "rewards": { "function": "wcs:advancements/story/reward_enter_nether" }
+}

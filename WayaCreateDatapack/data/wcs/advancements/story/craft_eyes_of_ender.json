@@ -1,0 +1,9 @@
+{
+  "display": {
+    "title": "The Eyes Have It", "description": "You've crafted at least 12 Eyes of Ender.",
+    "icon": { "item": "minecraft:ender_eye" }, "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/get_blaze_rods"
+  },
+  "criteria": { "has_eyes": { "trigger": "minecraft:inventory_changed", "conditions": { "items": [{ "items": ["minecraft:ender_eye"], "count": { "min": 12 } }] }}},
+  "rewards": { "function": "wcs:advancements/story/reward_craft_eyes_of_ender" }
+}
