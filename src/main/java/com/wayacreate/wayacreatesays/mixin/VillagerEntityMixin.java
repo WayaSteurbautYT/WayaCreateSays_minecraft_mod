@@ -1,9 +1,10 @@
 package com.wayacreate.wayacreatesays.mixin;
 
 import com.wayacreate.wayacreatesays.entity.ai.goal.OfferGiftToWorshippedPlayerGoal;
-import com.wayacreate.wayacreatesays.entity.ai.goal.AllyMinerGoal; // Added import
+import com.wayacreate.wayacreatesays.entity.ai.goal.AllyMinerGoal;
+import com.wayacreate.wayacreatesays.entity.ai.goal.AllyCrafterGoal; // Added import
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.mob.PathAwareEntity; // Added for casting
+import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.world.World;
@@ -42,5 +43,9 @@ public abstract class VillagerEntityMixin extends MerchantEntity {
         // Priority 6, could be adjusted. Villagers have work goals (like Farmer Villager working) around priority 3-5.
         // Making it slightly lower priority than gift offering and core job/interaction goals.
         self.goalSelector.add(6, new AllyMinerGoal(self));
+
+        // Add AllyCrafterGoal
+        // Priority 7, making it lower than general work/mining/gifting.
+        self.goalSelector.add(7, new AllyCrafterGoal(self));
     }
 }

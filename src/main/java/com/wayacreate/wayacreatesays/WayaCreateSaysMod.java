@@ -48,6 +48,19 @@ import net.minecraft.sound.SoundEvents;
 // NbtCompound, Items, ItemStack, ServerPlayerEntity, Text, ActionResult, TypedActionResult are likely already imported
 // UseEntityCallback is already imported
 import net.minecraft.nbt.NbtElement; // For NbtType check (COMPOUND_TYPE)
+// Imports for Manhunt Compass
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.nbt.NbtHelper; // For BlockPos to NBT
+import net.minecraft.server.MinecraftServer;
+// ServerPlayerEntity, ItemStack, Items, NbtCompound, BlockPos from commands.ManhuntCommand are already imported or covered
+// ManhuntCommand itself will be imported via com.wayacreate.wayacreatesays.commands.ManhuntCommand
+// Imports for Manhunt Win/Loss Conditions
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.minecraft.entity.LivingEntity; // Already imported via Extractor Gauntlet
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.advancement.Advancement; // For AdvancementProgressChangeEvent
+import net.minecraft.advancement.AdvancementProgress; // For AdvancementProgressChangeEvent
+// Text, Formatting, Identifier are likely already imported
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -458,6 +471,49 @@ public class WayaCreateSaysMod implements ModInitializer {
                     return ActionResult.PASS; // Unknown wayaItemType
             }
         });
+
+        // Manhunt Compass Update Logic
+        ServerTickEvents.END_SERVER_TICK.register(new ServerTickEvents.EndTick() {
+            // private int tickCounter = 0; // Optional: for less frequent updates
+
+            @Override
+            public void onEndTick(MinecraftServer server) {
+                if (!ManhuntCommand.isManhuntActive()) {
+                    return;
+                }
+
+                // Optional: Update less frequently
+                // tickCounter++;
+                // if (tickCounter % 10 != 0) { // e.g., every 10 ticks (0.5 seconds)
+                //     return;
+                // }
+
+                ServerPlayerEntity speedrunner = ManhuntCommand.getSpeedrunner(server.getOverworld());
+                if (speedrunner == null) {
+                    return;
+                }
+
+                BlockPos runnerPos = speedrunner.getBlockPos();
+                // Get dimension as string identifier, e.g., "minecraft:the_nether"
+                String runnerDimension = speedrunner.getWorld().getRegistryKey().getValue().toString();
+
+                for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+                    if (ManhuntCommand.isPlayerManhunter(player)) {
+                        for (int i = 0; i < player.getInventory().size(); i++) {
+                            ItemStack stack = player.getInventory().getStack(i);
+                            if (stack.isOf(Items.COMPASS)) {
+                                NbtCompound nbt = stack.getOrCreateNbt();
+                                nbt.put("LodestonePos", NbtHelper.fromBlockPos(runnerPos));
+                                nbt.putString("LodestoneDimension", runnerDimension);
+                                nbt.putBoolean("LodestoneTracked", false); // Points to coords, not a block
+                                // stack.setNbt(nbt); // Not needed as getOrCreateNbt() returns a live reference
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
 
         LOGGER.info("WayaCreate Mode, Mob Army, and Auto Speedrun systems ready!");
     }

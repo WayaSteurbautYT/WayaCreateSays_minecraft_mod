@@ -87,7 +87,7 @@ public class ForceDropCommand {
         }
 
         if (successfulDrops > 0) {
-            source.sendFeedback(() -> Text.literal("Forced drops for " + successfulDrops + " entity/entities."), true);
+            source.sendFeedback(() -> Text.literal("WayaCreate says: Forced drops for " + successfulDrops + " entity/entities!"), true);
         } else {
             source.sendFeedback(() -> Text.literal("No valid living entities found, they have no loot, or no loot was generated."), false);
         }
