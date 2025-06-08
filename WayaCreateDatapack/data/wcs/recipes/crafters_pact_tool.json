@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:stick"},
+    {"item": "minecraft:lapis_lazuli"}
+  ],
+  "result": {
+    "item": "minecraft:stick",
+    "count": 1,
+    "nbt": "{wayacreate_item:"crafters_pact_tool", Enchantments:[{id:\"minecraft:unbreaking\",lvl:1s}], display:{Name:'{\"text\":\"Artisan\\'s Designator\",\"color\":\"yellow\",\"italic\":false}', Lore:['{\"text\":\"Right-click an ally to assign Crafter role.\",\"color\":\"gray\",\"italic\":false}']}}"
+  }
+}

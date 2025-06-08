@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "FIF",
+    " G "
+  ],
+  "key": {
+    "P": {"item": "minecraft:paper"},
+    "F": {"item": "minecraft:feather"},
+    "I": {"item": "minecraft:ink_sac"},
+    "G": {"item": "minecraft:gold_nugget"}
+  },
+  "result": {
+    "item": "minecraft:writable_book",
+    "count": 1,
+    "nbt": "{wayacreate_item:\"pact_of_alliance\", Enchantments:[{id:\"minecraft:unbreaking\",lvl:1s}], display:{Name:'{\"text\":\"Pact of Alliance\",\"color\":\"light_purple\",\"italic\":false}', Lore:['{\"text\":\"Right-click a creature to offer an alliance.\",\"color\":\"gray\",\"italic\":false}']}}"
+  }
+}

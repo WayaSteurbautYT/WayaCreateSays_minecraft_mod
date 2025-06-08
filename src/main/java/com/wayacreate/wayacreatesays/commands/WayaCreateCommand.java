@@ -30,8 +30,8 @@ public class WayaCreateCommand {
 
         // Register other commands
         TimeStopCommand.register(dispatcher);
+        ForceDropCommand.register(dispatcher); // Added ForceDropCommand registration
         // If MobArmyCommands, AutoSpeedrunCommands etc. have static register methods, they could be called here too.
-        // For now, only adding TimeStopCommand as per current subtask.
     }
     
     private static int setWayaCreateMode(CommandContext<ServerCommandSource> context) {
