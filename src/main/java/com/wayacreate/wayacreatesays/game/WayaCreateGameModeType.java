@@ -57,6 +57,17 @@ public class WayaCreateGameModeType {
             
             // Send welcome message
             player.sendMessage(Text.translatable("gameMode.wayacreate.welcome"));
+
+            // Execute datapack function
+            if (serverPlayer.getServer() != null) { // Ensure server is not null
+                serverPlayer.getServer().getCommandManager().executeWithPrefix(
+                    serverPlayer.getCommandSource().withSilent(),
+                    "function wcs:game_control/init_wayacreate_mode"
+                );
+                WayaCreateSaysMod.LOGGER.info("Executed init_wayacreate_mode function for player " + serverPlayer.getName().getString());
+            } else {
+                WayaCreateSaysMod.LOGGER.warn("Could not execute init_wayacreate_mode function: serverPlayer.getServer() is null for " + serverPlayer.getName().getString());
+            }
         }
     }
 }

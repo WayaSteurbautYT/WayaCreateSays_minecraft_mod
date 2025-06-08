@@ -74,6 +74,7 @@ public class MobArmyCommands {
         }
     }
     
+    /* METHOD POSSIBLY HANDLED BY DATAPACK: wcs:mob_control/recruit_mob
     private static void recruitMob(PlayerEntity player, String mobType, String name) {
         World world = player.getWorld();
         List<LivingEntity> nearbyMobs = world.getEntitiesByClass(
@@ -109,7 +110,9 @@ public class MobArmyCommands {
         world.playSound(null, mob.getBlockPos(), SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.PLAYERS, 1.0f, 1.0f);
         player.sendMessage(Text.of("§a" + mobType + " has joined your army!"), false);
     }
+    */
     
+    /* METHOD POSSIBLY HANDLED BY DATAPACK: wcs:mob_control/force_mob_drops
     private static void forceDrop(PlayerEntity player, String itemType) {
         World world = player.getWorld();
         List<LivingEntity> targets = new ArrayList<>();
@@ -135,6 +138,7 @@ public class MobArmyCommands {
             player.sendMessage(Text.of("§aForced " + targets.size() + " mobs to drop " + itemType), false);
         }
     }
+    */
     
     private static void mineBlock(PlayerEntity player, String blockType) {
         // Find nearby villagers with the right profession
@@ -180,6 +184,7 @@ public class MobArmyCommands {
         );
     }
     
+    /* METHOD POSSIBLY HANDLED BY DATAPACK: wcs:mob_control/worship_me
     private static void makeWorship(PlayerEntity player, String mobType) {
         World world = player.getWorld();
         List<MobEntity> worshipers = world.getEntitiesByClass(
@@ -211,6 +216,7 @@ public class MobArmyCommands {
             player.sendMessage(Text.of("§cNo " + mobType + "s found to worship you"), false);
         }
     }
+    */
     
     private static void commandArmy(PlayerEntity player, String command) {
         List<LivingEntity> army = getPlayerArmy(player);
@@ -220,22 +226,27 @@ public class MobArmyCommands {
         }
         
         switch (command) {
-            case "follow":
+            case "follow": // POSSIBLY HANDLED BY DATAPACK: wcs:mob_control/command_army_follow
+                /*
                 army.forEach(mob -> {
                     if (mob instanceof TameableEntity) {
                         ((TameableEntity) mob).setOwner(player);
                     }
                     mob.getNavigation().startMovingTo(player, 1.0);
                 });
-                player.sendMessage(Text.of("§aYour army is following you!"), false);
+                */
+                player.sendMessage(Text.of("§aYour army is following you! (Original implementation commented out)"), false);
                 break;
                 
-            case "stay":
+            case "stay": // POSSIBLY HANDLED BY DATAPACK: wcs:mob_control/command_army_stay
+                /*
                 army.forEach(mob -> mob.getNavigation().stop());
-                player.sendMessage(Text.of("§aYour army has stopped."), false);
+                */
+                player.sendMessage(Text.of("§aYour army has stopped. (Original implementation commented out)"), false);
                 break;
                 
-            case "attack":
+            case "attack": // POSSIBLY HANDLED BY DATAPACK: wcs:mob_control/command_army_attack
+                /*
                 // Find nearest hostile mob
                 LivingEntity target = findNearestHostile(player);
                 if (target != null) {
@@ -248,9 +259,12 @@ public class MobArmyCommands {
                 } else {
                     player.sendMessage(Text.of("§cNo hostile mobs found to attack!"), false);
                 }
+                */
+                player.sendMessage(Text.of("§aYour army is attacking! (Original implementation commented out)"), false);
                 break;
                 
-            case "dance":
+            case "dance": // POSSIBLY HANDLED BY DATAPACK: wcs:mob_control/dance
+                /*
                 army.forEach(mob -> {
                     // Make mobs jump around randomly
                     mob.setVelocity(
@@ -260,7 +274,8 @@ public class MobArmyCommands {
                     );
                     world.playSound(null, mob.getBlockPos(), SoundEvents.ENTITY_VILLAGER_CELEBRATE, SoundCategory.NEUTRAL, 1.0f, 1.0f);
                 });
-                player.sendMessage(Text.of("§aYour army is dancing!"), false);
+                */
+                player.sendMessage(Text.of("§aYour army is dancing! (Original implementation commented out)"), false);
                 break;
         }
     }

@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 public class GameCommands {
     private static final MinecraftClient client = MinecraftClient.getInstance();
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:guidance/stage_0_intro
     public static void helpBeatGame() {
         if (client.player != null) {
             sendMessage("§aLet's beat Minecraft together! Here's what we'll do:");
@@ -27,7 +28,9 @@ public class GameCommands {
             sendMessage("§aSay 'Simon says help me with [step]' for specific guidance!");
         }
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:game_control/make_crafting_table
     public static void makeCraftingTable() {
         if (client.player == null || client.world == null) return;
         
@@ -69,7 +72,9 @@ public class GameCommands {
             sendMessage("§cYou need wood planks to make a crafting table!");
         }
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:game_control/mine_wood
     public static void mineWood() {
         if (client.player == null || client.world == null) return;
         
@@ -102,7 +107,9 @@ public class GameCommands {
         
         sendMessage("§cNo wood found nearby! Try standing near a tree.");
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:game_control/time_stop (via CommandHandler)
     public static void stopTime() {
         if (client.player == null || client.world == null) return;
         
@@ -114,20 +121,25 @@ public class GameCommands {
             client.player.playSound(SoundEvents.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.MASTER, 1.0f, 0.5f);
         }
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:game_control/teleport_spawn
     public static void teleportToSpawn() {
         if (client.player != null) {
             client.player.requestRespawn();
             sendMessage("§aTeleporting you to spawn!");
         }
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:game_control/give_diamonds_cheat
     public static void giveDiamonds() {
         if (client.player != null && client.interactionManager != null) {
             client.interactionManager.executeCommand("give @s minecraft:diamond 64");
             sendMessage("§bHere are some diamonds!");
         }
     }
+    */
     
     private static boolean isLog(net.minecraft.block.Block block) {
         return block == Blocks.OAK_LOG || block == Blocks.BIRCH_LOG || 
