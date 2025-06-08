@@ -44,7 +44,7 @@ public class TimeStopAbility {
         world.getGameRules().get(GameRules.RANDOM_TICK_SPEED).set(0, world.getServer());
 
         // Send message to all players that time has stopped
-        world.getServer().getPlayerManager().broadcast(Text.literal("§bTime has been stopped!"), false);
+        world.getServer().getPlayerManager().broadcast(Text.literal("§bWayaCreate says: Time has been stopped!"), false);
 
         frozenEntities.clear();
         for (Entity entity : world.iterateEntities()) {
@@ -114,7 +114,7 @@ public class TimeStopAbility {
                             System.out.println("Time Stop ability automatically ending after 15 minutes.");
                             stopTimeStop(world); // This will also cancel the timer internally
                             // Broadcast a message that it ended automatically
-                            world.getServer().getPlayerManager().broadcast(Text.literal("§eTime Stop duration expired. Time resumes."), false);
+                            world.getServer().getPlayerManager().broadcast(Text.literal("§eWayaCreate says: Time Stop duration expired. Time resumes."), false);
                         }
                     });
                 }
@@ -174,7 +174,7 @@ public class TimeStopAbility {
         }
 
         // Send message to all players that time resumes
-        world.getServer().getPlayerManager().broadcast(Text.literal("§aTime resumes its course."), false);
+        world.getServer().getPlayerManager().broadcast(Text.literal("§aWayaCreate says: Time resumes its course."), false);
 
         timeStopped = false; // Set flag last
     }

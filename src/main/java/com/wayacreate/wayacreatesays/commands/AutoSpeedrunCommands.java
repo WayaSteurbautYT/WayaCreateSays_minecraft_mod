@@ -74,7 +74,7 @@ public class AutoSpeedrunCommands {
         
         isAutoSpeedrunActive = false;
         autoSpeedrunStage = 0;
-        player.sendMessage(Text.of("§cAuto Speedrun has been stopped."), false);
+        player.sendMessage(Text.of("§cWayaCreate says: Auto Speedrun has been stopped."), false);
     }
     
     private static void progressAutoSpeedrun(PlayerEntity player) {

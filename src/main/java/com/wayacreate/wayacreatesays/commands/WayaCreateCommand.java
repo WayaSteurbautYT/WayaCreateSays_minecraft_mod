@@ -30,7 +30,8 @@ public class WayaCreateCommand {
 
         // Register other commands
         TimeStopCommand.register(dispatcher);
-        ForceDropCommand.register(dispatcher); // Added ForceDropCommand registration
+        ForceDropCommand.register(dispatcher);
+        ManhuntCommand.register(dispatcher); // Added ManhuntCommand registration
         // If MobArmyCommands, AutoSpeedrunCommands etc. have static register methods, they could be called here too.
     }
     
