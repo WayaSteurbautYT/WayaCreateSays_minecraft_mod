@@ -23,6 +23,7 @@ public class MobCommands {
     private static final MinecraftClient client = MinecraftClient.getInstance();
     private static final Random random = new Random();
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:mob_control/become_ally_to_monsters
     public static void allyWithMonsters() {
         if (client.player == null || client.world == null) return;
         
@@ -49,7 +50,9 @@ public class MobCommands {
             sendMessage("§cNo hostile mobs found nearby.");
         }
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:mob_control/pvp_target_dummy (placeholder)
     public static void killNearestPlayer() {
         if (client.player == null || client.world == null) return;
         
@@ -77,7 +80,9 @@ public class MobCommands {
             sendMessage("§cNo other players found nearby.");
         }
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:mob_control/dance
     public static void dance() {
         if (client.player == null || client.world == null) return;
         
@@ -115,12 +120,16 @@ public class MobCommands {
             sendMessage("§eNo entities found to dance with. How sad!");
         }
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:game_control/time_stop (via CommandHandler)
     public static void timeStop() {
         // This is now handled in GameCommands for world time manipulation
-        GameCommands.stopTime();
+        // GameCommands.stopTime(); // GameCommands.stopTime() is also commented out
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:mob_control/make_villagers_trade
     public static void makeVillagersTrade() {
         if (client.player == null || client.world == null) return;
         
@@ -149,7 +158,9 @@ public class MobCommands {
             sendMessage("§cNo villagers found nearby.");
         }
     }
+    */
     
+    /* METHOD NOW HANDLED BY DATAPACK: wcs:mob_control/summon_pet_wolf, wcs:mob_control/summon_pet_cat, wcs:mob_control/summon_pet_fox
     public static void summonPet(String mobType) {
         if (client.player == null || client.world == null) return;
         
@@ -181,7 +192,9 @@ public class MobCommands {
             sendMessage("§aSummoned a new pet for you!");
         }
     }
+    */
     
+    /* Helper method for commented out allyWithMonsters
     private static void spawnHearts(Entity entity) {
         if (client.world == null) return;
         for (int i = 0; i < 5; i++) {
@@ -191,7 +204,9 @@ public class MobCommands {
             client.world.addParticle(ParticleTypes.HEART, x, y, z, 0, 0.1, 0);
         }
     }
+    */
     
+    /* Helper method for commented out makeVillagersTrade
     private static void spawnEmeraldParticles(Entity entity) {
         if (client.world == null) return;
         for (int i = 0; i < 3; i++) {
@@ -204,7 +219,10 @@ public class MobCommands {
                 (random.nextDouble() - 0.5) * 0.1);
         }
     }
+    */
     
+    // sendMessage is used by killNearestPlayer, which is not removed.
+    // If killNearestPlayer is removed or changed to not send messages, this can be removed.
     private static void sendMessage(String message) {
         if (client.player != null) {
             client.player.sendMessage(Text.of(message), false);

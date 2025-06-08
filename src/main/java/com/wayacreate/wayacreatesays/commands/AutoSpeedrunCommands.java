@@ -57,10 +57,23 @@ public class AutoSpeedrunCommands {
         if (!isAutoSpeedrunActive) return;
         
         World world = player.getWorld();
+        ServerPlayerEntity serverPlayer = null;
+        if (player instanceof ServerPlayerEntity) {
+            serverPlayer = (ServerPlayerEntity) player;
+        } else {
+            // This should not happen if called from server-side packet handler
+            // or if the initial player object in handleAutoSpeedrunCommand was ServerPlayerEntity
+            System.err.println("AutoSpeedrunCommands.progressAutoSpeedrun: player is not ServerPlayerEntity!");
+            return;
+        }
         
         switch (autoSpeedrunStage) {
             case 1: // Stage 1: Gather Resources
-                player.sendMessage(Text.of("§6Stage 1: §eGathering resources..."), false);
+                // player.sendMessage(Text.of("§6Stage 1: §eGathering resources..."), false); // Old message
+                serverPlayer.getServer().getCommandManager().executeWithPrefix(
+                    serverPlayer.getCommandSource().withSilent(),
+                    "function wcs:guidance/stage_1_get_wood"
+                );
                 
                 // Spawn helper mobs
                 spawnHelperMobs(world, player.getBlockPos());
@@ -75,7 +88,11 @@ public class AutoSpeedrunCommands {
                 break;
                 
             case 2: // Stage 2: Nether Preparation
-                player.sendMessage(Text.of("§6Stage 2: §ePreparing for the Nether..."), false);
+                // player.sendMessage(Text.of("§6Stage 2: §ePreparing for the Nether..."), false); // Old message
+                serverPlayer.getServer().getCommandManager().executeWithPrefix(
+                    serverPlayer.getCommandSource().withSilent(),
+                    "function wcs:guidance/stage_12_build_nether_portal"
+                );
                 
                 // Build nether portal automatically
                 buildNetherPortal(world, player.getBlockPos().north(3));
@@ -87,7 +104,11 @@ public class AutoSpeedrunCommands {
                 break;
                 
             case 3: // Stage 3: Nether Exploration
-                player.sendMessage(Text.of("§6Stage 3: §eConquering the Nether..."), false);
+                // player.sendMessage(Text.of("§6Stage 3: §eConquering the Nether..."), false); // Old message
+                serverPlayer.getServer().getCommandManager().executeWithPrefix(
+                    serverPlayer.getCommandSource().withSilent(),
+                    "function wcs:guidance/stage_13_find_fortress"
+                );
                 
                 // Spawn blaze hunter
                 spawnBlazeHunter(world, player.getBlockPos());
@@ -99,7 +120,11 @@ public class AutoSpeedrunCommands {
                 break;
                 
             case 4: // Stage 4: The End
-                player.sendMessage(Text.of("§6Stage 4: §ePreparing for The End..."), false);
+                // player.sendMessage(Text.of("§6Stage 4: §ePreparing for The End..."), false); // Old message
+                serverPlayer.getServer().getCommandManager().executeWithPrefix(
+                    serverPlayer.getCommandSource().withSilent(),
+                    "function wcs:guidance/stage_17_activate_end_portal"
+                );
                 
                 // Spawn ender dragon specialist
                 spawnDragonSpecialist(world, player.getBlockPos());
@@ -111,8 +136,12 @@ public class AutoSpeedrunCommands {
                 break;
                 
             case 5: // Final Stage: Dragon Fight
-                player.sendMessage(Text.of("§6§lFINAL STAGE: §c§lDEFEAT THE ENDER DRAGON!"), false);
-                player.sendMessage(Text.of("§eYour army is ready! Say 'WayaCreate says attack dragon' to begin the assault!"), false);
+                // player.sendMessage(Text.of("§6§lFINAL STAGE: §c§lDEFEAT THE ENDER DRAGON!"), false); // Old message
+                // player.sendMessage(Text.of("§eYour army is ready! Say 'WayaCreate says attack dragon' to begin the assault!"), false); // Old message
+                serverPlayer.getServer().getCommandManager().executeWithPrefix(
+                    serverPlayer.getCommandSource().withSilent(),
+                    "function wcs:guidance/stage_19_defeat_ender_dragon"
+                );
                 break;
         }
     }

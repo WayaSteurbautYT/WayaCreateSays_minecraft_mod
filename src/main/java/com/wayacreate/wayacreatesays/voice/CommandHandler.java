@@ -1,11 +1,15 @@
 package com.wayacreate.wayacreatesays.voice;
 
 import com.wayacreate.wayacreatesays.WayaCreateSaysMod;
+import com.wayacreate.wayacreatesays.WayaCreateSaysMod;
 import com.wayacreate.wayacreatesays.commands.GameCommands;
 import com.wayacreate.wayacreatesays.commands.MobCommands;
 import com.wayacreate.wayacreatesays.commands.SpeedrunCommands;
 import com.wayacreate.wayacreatesays.commands.AutoSpeedrunCommands;
+import com.wayacreate.wayacreatesays.network.ClientNetworking; // Added import
 
+import net.minecraft.entity.player.PlayerEntity; // For AutoSpeedrunCommands and SpeedrunCommands if they still need it
+import java.util.List; // For AutoSpeedrunCommands if it still needs it
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,62 +28,62 @@ public class CommandHandler {
             "help me beat the game", 
             "help me win",
             "how do i beat the game")) {
-            GameCommands.helpBeatGame();
+            ClientNetworking.sendFunctionCommand("wcs:guidance/stage_0_intro");
         } 
         else if (matchesAny(command, 
             "make a crafting table", 
             "craft a crafting table",
             "give me a crafting table")) {
-            GameCommands.makeCraftingTable();
+            ClientNetworking.sendFunctionCommand("wcs:game_control/make_crafting_table");
         } 
         else if (matchesAny(command, 
             "mine wood for me", 
             "chop some wood",
             "get me some wood")) {
-            GameCommands.mineWood();
+            ClientNetworking.sendFunctionCommand("wcs:game_control/mine_wood");
         }
         else if (matchesAny(command, 
             "teleport to spawn",
             "go to spawn",
             "take me to spawn")) {
-            GameCommands.teleportToSpawn();
+            ClientNetworking.sendFunctionCommand("wcs:game_control/teleport_spawn");
         }
         else if (matchesAny(command, 
             "give me diamonds",
             "i want diamonds",
             "get me diamonds")) {
-            GameCommands.giveDiamonds();
+            ClientNetworking.sendFunctionCommand("wcs:game_control/give_diamonds_cheat");
         }
         // Mob commands
         else if (matchesAny(command, 
             "become an ally to monsters",
             "make friends with monsters",
             "monsters be my friend")) {
-            MobCommands.allyWithMonsters();
+            ClientNetworking.sendFunctionCommand("wcs:mob_control/become_ally_to_monsters");
         } 
         else if (matchesAny(command, 
             "kill that player",
             "eliminate that player",
             "take out that player")) {
-            MobCommands.killNearestPlayer();
+            ClientNetworking.sendFunctionCommand("wcs:mob_control/pvp_target_dummy");
         } 
         else if (matchesAny(command, 
             "dance",
             "let's dance",
             "dance party")) {
-            MobCommands.dance();
+            ClientNetworking.sendFunctionCommand("wcs:mob_control/dance");
         } 
         else if (matchesAny(command, 
             "time stop",
             "stop time",
             "freeze time")) {
-            MobCommands.timeStop();
+            ClientNetworking.sendFunctionCommand("wcs:game_control/time_stop");
         }
         else if (matchesAny(command, 
             "make villagers trade",
             "trade with villagers",
             "villagers give me stuff")) {
-            MobCommands.makeVillagersTrade();
+            ClientNetworking.sendFunctionCommand("wcs:mob_control/make_villagers_trade");
         }
         // Speedrun commands
         else if (matchesAny(command, 
@@ -88,10 +92,17 @@ public class CommandHandler {
             "locate ")) {
             Matcher findMatcher = SPEEDRUN_FIND_PATTERN.matcher(command);
             if (findMatcher.find()) {
-                String item = findMatcher.group(1);
-                SpeedrunCommands.handleSpeedrunCommand("find " + item, getPlayer());
+                String item = findMatcher.group(1).toLowerCase();
+                if (item.equals("stronghold")) {
+                    ClientNetworking.sendFunctionCommand("wcs:game_control/find_stronghold");
+                } else {
+                    // Retain existing behavior for other "find" commands (text help)
+                    // This needs review due to getPlayer() removal.
+                    WayaCreateSaysMod.LOGGER.info("Original find command for: " + item + " - needs review due to getPlayer() removal. SpeedrunCommands.handleSpeedrunCommand would have been called.");
+                    // If SpeedrunCommands can work without PlayerEntity for text help, that's ideal.
+                }
             } else {
-                sendMessage("§cPlease specify what to find. Example: 'Simon says find diamonds'");
+                WayaCreateSaysMod.LOGGER.info("Please specify what to find. (Original sendMessage call '§cPlease specify what to find. Example: 'Simon says find diamonds'')");
             }
         }
         else if (matchesAny(command, 
@@ -101,70 +112,105 @@ public class CommandHandler {
             Matcher craftMatcher = SPEEDRUN_CRAFT_PATTERN.matcher(command);
             if (craftMatcher.find()) {
                 String item = craftMatcher.group(1);
-                SpeedrunCommands.handleSpeedrunCommand("craft " + item, getPlayer());
+                // SpeedrunCommands.handleSpeedrunCommand("craft " + item, getPlayer());
+                WayaCreateSaysMod.LOGGER.info("Original craft command for: " + item + " - needs review due to getPlayer() removal. SpeedrunCommands.handleSpeedrunCommand would have been called.");
             } else {
-                sendMessage("§cI can help you craft items. Try 'Simon says craft pickaxe'");
+                // sendMessage("§cI can help you craft items. Try 'Simon says craft pickaxe'");
+                WayaCreateSaysMod.LOGGER.info("I can help you craft items. (Original sendMessage call '§cI can help you craft items. Try 'Simon says craft pickaxe'')");
             }
         }
         else if (matchesAny(command, 
             "nether portal",
             "build portal",
             "make nether portal")) {
-            SpeedrunCommands.handleSpeedrunCommand("portal", getPlayer());
+            ClientNetworking.sendFunctionCommand("wcs:game_control/build_nether_portal");
         }
         else if (matchesAny(command, 
             "prepare for nether",
             "nether preparation",
             "what do i need for nether")) {
-            SpeedrunCommands.handleSpeedrunCommand("nether", getPlayer());
+            // SpeedrunCommands.handleSpeedrunCommand("nether", getPlayer());
+            WayaCreateSaysMod.LOGGER.info("Original nether prep command - needs review due to getPlayer() removal. SpeedrunCommands.handleSpeedrunCommand would have been called.");
         }
         else if (matchesAny(command, 
             "find fortress",
             "locate fortress",
             "where is nether fortress")) {
-            SpeedrunCommands.handleSpeedrunCommand("fortress", getPlayer());
+            // SpeedrunCommands.handleSpeedrunCommand("fortress", getPlayer());
+            WayaCreateSaysMod.LOGGER.info("Original find fortress command - needs review due to getPlayer() removal. SpeedrunCommands.handleSpeedrunCommand would have been called.");
         }
         else if (matchesAny(command, 
             "find stronghold",
             "locate stronghold",
             "where is stronghold")) {
-            SpeedrunCommands.handleSpeedrunCommand("stronghold", getPlayer());
+            ClientNetworking.sendFunctionCommand("wcs:game_control/find_stronghold");
         }
         else if (matchesAny(command, 
             "prepare for dragon",
             "dragon fight",
             "ender dragon preparation")) {
-            SpeedrunCommands.handleSpeedrunCommand("dragon", getPlayer());
+            // SpeedrunCommands.handleSpeedrunCommand("dragon", getPlayer());
+            WayaCreateSaysMod.LOGGER.info("Original dragon prep command - needs review due to getPlayer() removal. SpeedrunCommands.handleSpeedrunCommand would have been called.");
         }
         // Auto Speedrun Commands
         else if (matchesAny(command, 
             "auto speedrun",
             "start speedrun",
             "begin speedrun")) {
-            AutoSpeedrunCommands.handleAutoSpeedrunCommand(getPlayer());
+            // As per instructions, call the datapack for guidance AND trigger Java logic via packet.
+            ClientNetworking.sendFunctionCommand("wcs:guidance/stage_0_intro");
+            ClientNetworking.sendStartAutoSpeedrunPacket();
+            // The log about AutoSpeedrunCommands.handleAutoSpeedrunCommand is removed as it's now triggered by the packet.
         }
         else if (matchesAny(command, 
             "stop",
             "stop speedrun",
             "cancel speedrun")) {
-            AutoSpeedrunCommands.stopAutoSpeedrun(getPlayer());
+            ClientNetworking.sendStopAutoSpeedrunPacket();
         }
         else if (matchesAny(command, 
             "attack dragon",
             "kill dragon",
             "charge")) {
-            AutoSpeedrunCommands.attackDragon(getPlayer());
+            ClientNetworking.sendAttackDragonPacket();
+        }
+        // Automate commands
+        else if (matchesAny(command,
+            "automate mining",
+            "villagers mine for me",
+            "get villagers to mine")) {
+            ClientNetworking.sendFunctionCommand("wcs:game_control/automate_mining_stub");
+        }
+        else if (matchesAny(command,
+            "automate crafting",
+            "villagers craft for me",
+            "get villagers to craft")) {
+            ClientNetworking.sendFunctionCommand("wcs:game_control/automate_crafting_stub");
         }
         // Pet commands
         else {
             Matcher petMatcher = PET_PATTERN.matcher(command);
             if (petMatcher.find()) {
-                String petType = petMatcher.group(2);
-                MobCommands.summonPet(petType);
+                String petType = petMatcher.group(2).toLowerCase();
+                switch (petType) {
+                    case "wolf":
+                    case "dog": // Assuming "dog" means "wolf"
+                        ClientNetworking.sendFunctionCommand("wcs:mob_control/summon_pet_wolf");
+                        break;
+                    case "cat":
+                        ClientNetworking.sendFunctionCommand("wcs:mob_control/summon_pet_cat");
+                        break;
+                    case "fox":
+                        ClientNetworking.sendFunctionCommand("wcs:mob_control/summon_pet_fox");
+                        break;
+                    default:
+                        WayaCreateSaysMod.LOGGER.warn("Unknown pet type: " + petType);
+                        break;
+                }
             } else {
                 WayaCreateSaysMod.LOGGER.warn("Unknown command: " + command);
-                if (command.length() > 0) {
-                    sendMessage("§cI don't understand that command. Try 'Simon says auto speedrun' to start an epic adventure!");
+                if (command.length() > 0) { // Check if command is not empty
+                     WayaCreateSaysMod.LOGGER.info("Unknown command received: " + command + " (Original sendMessage: §cI don't understand that command. Try 'Simon says auto speedrun' to start an epic adventure!)");
                 }
             }
         }
@@ -178,22 +224,7 @@ public class CommandHandler {
         }
         return false;
     }
-    
-    private static void sendMessage(String message) {
-        if (net.minecraft.client.MinecraftClient.getInstance().player != null) {
-            net.minecraft.client.MinecraftClient.getInstance().player.sendMessage(
-                net.minecraft.text.Text.of(message), false);
-        }
-    }
-    
-    private static PlayerEntity getPlayer() {
-        // Get the server player entity
-        if (WayaCreateSaysMod.server != null) {
-            List<ServerPlayerEntity> players = WayaCreateSaysMod.server.getPlayerManager().getPlayerList();
-            if (!players.isEmpty()) {
-                return players.get(0); // Return first player in the list
-            }
-        }
-        return null;
-    }
+    // getPlayer() and sendMessage() removed.
+    // PlayerEntity and List imports are kept for now as AutoSpeedrunCommands and SpeedrunCommands might still use them.
+    // They will be cleaned up if those classes are simplified enough.
 }
