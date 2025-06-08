@@ -27,6 +27,11 @@ public class WayaCreateCommand {
                 .then(literal("wayacreate")
                     .executes(context -> setWayaCreateMode(context.getSource().withLevel(2))))
         );
+
+        // Register other commands
+        TimeStopCommand.register(dispatcher);
+        // If MobArmyCommands, AutoSpeedrunCommands etc. have static register methods, they could be called here too.
+        // For now, only adding TimeStopCommand as per current subtask.
     }
     
     private static int setWayaCreateMode(CommandContext<ServerCommandSource> context) {

@@ -1,0 +1,39 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:wooden_pickaxe"
+    },
+    "title": "Auto Speedrun: Stage 1 Complete",
+    "description": "Gather initial resources and craft basic tools.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "minecraft:story/root",
+  "criteria": {
+    "get_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["#minecraft:logs"]
+          }
+        ]
+      }
+    },
+    "craft_wooden_pickaxe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:wooden_pickaxe"
+      }
+    }
+  },
+  "requirements": [
+    ["get_log"],
+    ["craft_wooden_pickaxe"]
+  ],
+  "rewards": {
+    "function": "wcs:autospeedrun/rewards/stage_1_complete"
+  }
+}
