@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SES",
+    " S "
+  ],
+  "key": {
+    "E": { "item": "minecraft:ender_pearl" },
+    "S": { "item": "minecraft:stone" }
+  },
+  "result": {
+    "item": "minecraft:carrot_on_a_stick",
+    "count": 1,
+    "nbt": "{display:{Name:'{\"text\":\"Hearthstone\",\"color\":\"light_purple\",\"italic\":false}',Lore:['{\"text\":\"Right-click to return to your spawn point.\",\"color\":\"aqua\"}' ]},wcs_item:\"hearthstone\",CustomModelData:4}"
+  }
+}

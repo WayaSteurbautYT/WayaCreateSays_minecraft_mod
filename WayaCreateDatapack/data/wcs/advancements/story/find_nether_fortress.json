@@ -1,0 +1,16 @@
+{
+  "display": {
+    "title": "A Terrible Place",
+    "description": "You've found a Nether Fortress.",
+    "icon": { "item": "minecraft:nether_bricks" },
+    "frame": "task", "show_toast": true, "announce_to_chat": true, "hidden": false,
+    "after": "wcs:story/enter_nether"
+  },
+  "criteria": {
+    "in_fortress": {
+      "trigger": "minecraft:location",
+      "conditions": { "feature": "minecraft:fortress" }
+    }
+  },
+  "rewards": { "function": "wcs:advancements/story/reward_find_nether_fortress" }
+}

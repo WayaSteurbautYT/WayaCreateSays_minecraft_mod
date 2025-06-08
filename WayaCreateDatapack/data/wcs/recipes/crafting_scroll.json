@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:paper" },
+    { "item": "minecraft:crafting_table" }
+  ],
+  "result": {
+    "item": "minecraft:carrot_on_a_stick",
+    "count": 1,
+    "nbt": "{display:{Name:'{\"text\":\"Crafting Table Scroll\",\"color\":\"green\",\"italic\":false}',Lore:['{\"text\":\"Right-click to magically conjure a crafting table!\",\"color\":\"aqua\"}','{\"text\":\"(Requires 4 oak planks)\"}' ]},wcs_item:\"crafting_scroll\",CustomModelData:2}"
+  }
+}

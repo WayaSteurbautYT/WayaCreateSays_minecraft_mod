@@ -1,0 +1,27 @@
+{
+  "display": {
+    "title": "Well Fed!",
+    "description": "You've cooked and eaten a nutritious meal.",
+    "icon": {
+      "item": "minecraft:cooked_beef"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "after": "wcs:story/build_shelter"
+  },
+  "criteria": {
+    "consumed_cooked_meat": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "tag": "wcs:cooked_meats"
+        }
+      }
+    }
+  },
+  "rewards": {
+    "function": "wcs:advancements/story/reward_cook_eat_food"
+  }
+}

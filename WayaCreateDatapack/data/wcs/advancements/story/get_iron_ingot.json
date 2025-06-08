@@ -1,0 +1,29 @@
+{
+  "display": {
+    "title": "Acquire Hardware",
+    "description": "You've smelted your first Iron Ingot!",
+    "icon": {
+      "item": "minecraft:iron_ingot"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "after": "wcs:story/cook_eat_food"
+  },
+  "criteria": {
+    "has_iron_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:iron_ingot"]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "function": "wcs:advancements/story/reward_get_iron_ingot"
+  }
+}

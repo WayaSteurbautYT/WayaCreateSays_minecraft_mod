@@ -1,0 +1,31 @@
+{
+  "display": {
+    "title": "Tooling Up!",
+    "description": "You've crafted basic wooden tools.",
+    "icon": {
+      "item": "minecraft:wooden_pickaxe"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "after": "wcs:story/craft_crafting_table"
+  },
+  "criteria": {
+    "has_wooden_pickaxe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["minecraft:wooden_pickaxe"]}]}
+    },
+    "has_wooden_axe": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["minecraft:wooden_axe"]}]}
+    },
+    "has_wooden_shovel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": ["minecraft:wooden_shovel"]}]}
+    }
+  },
+  "rewards": {
+    "function": "wcs:advancements/story/reward_craft_wooden_tools"
+  }
+}
