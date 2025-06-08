@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CAC",
+    "ANA",
+    "CAC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "result": {
+    "item": "minecraft:amethyst_shard",
+    "count": 1,
+    "nbt": "{wayacreate_item:\"chronos_shard\", Enchantments:[{id:\"minecraft:unbreaking\",lvl:1s}], display:{Name:'{\"text\":\"Chronos Shard\",\"color\":\"aqua\",\"italic\":false}', Lore:['{\"text\":\"Right-click to briefly stop time.\",\"color\":\"gray\",\"italic\":false}']}}"
+  }
+}

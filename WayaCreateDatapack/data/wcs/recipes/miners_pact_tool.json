@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {"item": "minecraft:iron_pickaxe"},
+    {"item": "minecraft:diamond"}
+  ],
+  "result": {
+    "item": "minecraft:iron_pickaxe",
+    "count": 1,
+    "nbt": "{wayacreate_item:"miners_pact_tool", Enchantments:[{id:\"minecraft:efficiency\",lvl:1s}], display:{Name:'{\"text\":\"Pickaxe of the Vanguard\",\"color\":\"blue\",\"italic\":false}', Lore:['{\"text\":\"Right-click an ally to assign Miner role.\",\"color\":\"gray\",\"italic\":false}']}}"
+  }
+}
