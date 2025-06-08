@@ -1,0 +1,30 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:dragon_head"
+    },
+    "title": "Auto Speedrun: VICTORY!",
+    "description": "Pacify the Ender Dragon with the Essence of Waya.",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "wcs:autospeedrun/stage_4_complete",
+  "criteria": {
+    "pacify_dragon": {
+      "trigger": "wcs:dragon_pacified_with_essence_of_waya",
+      "conditions": {
+        "item": {
+          "items": ["minecraft:stick"]
+        }
+      }
+    }
+  },
+  "requirements": [
+    ["pacify_dragon"]
+  ],
+  "rewards": {
+    "function": "wcs:autospeedrun/rewards/stage_5_dragon_defeated"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:ender_eye"
+    },
+    "title": "Auto Speedrun: Stage 4 Complete",
+    "description": "Enter The End dimension.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "wcs:autospeedrun/stage_3_complete",
+  "criteria": {
+    "entered_end": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "minecraft:the_end"
+      }
+    }
+  },
+  "requirements": [
+    ["entered_end"]
+  ],
+  "rewards": {
+    "function": "wcs:autospeedrun/rewards/stage_4_complete"
+  }
+}

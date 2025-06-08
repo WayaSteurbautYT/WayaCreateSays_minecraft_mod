@@ -19,6 +19,15 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import net.fabricmc.fabric.api.advancement.v1.AdvancementProgressChangeEvent;
+import com.wayacreate.wayacreatesays.advancement.criterion.DragonPacifiedCriterion;
+import com.wayacreate.wayacreatesays.commands.AutoSpeedrunCommands; // Added for helper methods
+import net.minecraft.advancement.criterion.Criteria;
+import net.fabricmc.fabric.api.event.player.UseEntityCallback;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items; // For minecraft:stick
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +38,7 @@ public class WayaCreateSaysMod implements ModInitializer {
     
     // Game mode identifier
     public static final Identifier WAYACREATE_GAMEMODE_ID = new Identifier(MOD_ID, "wayacreate");
+    public static DragonPacifiedCriterion DRAGON_PACIFIED;
     
     @Override
     public void onInitialize() {
@@ -98,6 +108,38 @@ public class WayaCreateSaysMod implements ModInitializer {
                 // Ensure this is run on the server thread
                 AutoSpeedrunCommands.handleAutoSpeedrunCommand(player);
             });
+        });
+
+        // Register Advancement Event Handler
+        AdvancementProgressChangeEvent.EVENT.register((playerAdvancementTracker, serverPlayerEntity, advancement, criterionName) -> {
+            AutoSpeedrunCommands.onAdvancementProgress(playerAdvancementTracker, serverPlayerEntity, advancement, criterionName);
+        });
+
+        DRAGON_PACIFIED = Criteria.register(new DragonPacifiedCriterion());
+        LOGGER.info("Registered custom advancement criteria.");
+
+        UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+            if (!world.isClient() && player instanceof ServerPlayerEntity && entity instanceof EnderDragonEntity) { // Ensure server-side
+                ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+                ItemStack stackInHand = player.getStackInHand(hand);
+
+                // Check if auto speedrun is active and at stage 5, and player is holding the placeholder item (stick)
+                if (AutoSpeedrunCommands.getIsAutoSpeedrunActive() &&
+                    AutoSpeedrunCommands.getCurrentStage() == 5 &&
+                    stackInHand.isOf(Items.STICK)) {
+
+                    // Trigger the custom advancement
+                    DRAGON_PACIFIED.trigger(serverPlayer, stackInHand);
+
+                    // Optionally, provide feedback or consume item (example)
+                    // serverPlayer.sendMessage(Text.of("You used the item on the Dragon!"), false);
+                    // stackInHand.decrement(1);
+                    // world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.PLAYERS, 0.5f, 1.0f);
+
+                    return ActionResult.SUCCESS; // Indicate success and prevent further processing
+                }
+            }
+            return ActionResult.PASS; // Pass to allow normal interaction if conditions not met
         });
 
         LOGGER.info("WayaCreate Mode, Mob Army, and Auto Speedrun systems ready!");

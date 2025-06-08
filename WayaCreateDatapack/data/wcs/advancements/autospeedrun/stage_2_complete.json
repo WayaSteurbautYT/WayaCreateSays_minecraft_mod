@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:netherrack"
+    },
+    "title": "Auto Speedrun: Stage 2 Complete",
+    "description": "Enter the Nether.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "wcs:autospeedrun/stage_1_complete",
+  "criteria": {
+    "entered_nether": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "minecraft:the_nether"
+      }
+    }
+  },
+  "requirements": [
+    ["entered_nether"]
+  ],
+  "rewards": {
+    "function": "wcs:autospeedrun/rewards/stage_2_complete"
+  }
+}

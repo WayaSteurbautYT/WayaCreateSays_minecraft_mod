@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:blaze_rod"
+    },
+    "title": "Auto Speedrun: Stage 3 Complete",
+    "description": "Obtain Blaze Rods.",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "wcs:autospeedrun/stage_2_complete",
+  "criteria": {
+    "get_blaze_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:blaze_rod"]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["get_blaze_rod"]
+  ],
+  "rewards": {
+    "function": "wcs:autospeedrun/rewards/stage_3_complete"
+  }
+}
